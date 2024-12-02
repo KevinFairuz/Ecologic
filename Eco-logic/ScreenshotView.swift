@@ -5,8 +5,8 @@
 //  Created by Clarissa Alverina on 29/04/24.
 //
 
-import SwiftUI
 import AVFoundation
+import SwiftUI
 
 var player3: AVAudioPlayer!
 
@@ -20,9 +20,9 @@ struct ScreenshotView: View {
         VStack {
             ZStack {
                 Image("bg screenshot")
-                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                
-                
+                    .edgesIgnoringSafeArea( /*@START_MENU_TOKEN@*/
+                        .all /*@END_MENU_TOKEN@*/)
+
                 if isPhotoVisible {
                     ZStack {
                         Image("bulletin board")
@@ -30,33 +30,40 @@ struct ScreenshotView: View {
                             .resizable()
                             .frame(width: 350, height: 500)
                             .padding(.bottom, 120)
-                        
+
                         VStack {
-                            NavigationLink(destination: DarkLightView().navigationBarBackButtonHidden(true)) {
+                            NavigationLink(
+                                destination: DarkLightView()
+                                    .navigationBarBackButtonHidden(true)
+                            ) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
                                         .frame(width: 180, height: 45)
                                         .background(
                                             RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(Color(hex: 0x822E4C))
+                                                .foregroundColor(
+                                                    Color(hex: 0x822E4C))
                                         )
-                                    
-                                    ZStack{
-                                        
+
+                                    ZStack {
+
                                         Image(systemName: "arrow.right")
                                             .resizable()
                                             .frame(width: 30, height: 20)
                                             .padding()
                                             .foregroundColor(Color.white)
                                             .bold()
-                                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
+                                            .frame(
+                                                width: /*@START_MENU_TOKEN@*/
+                                                    100 /*@END_MENU_TOKEN@*/,
+                                                height: 100)
                                     }
                                 }
                             }
                             .padding(.top, 650)
                             .foregroundColor(Color(hex: 0x822E4C))
                         }
-                        
+
                         Rectangle()
                             .edgesIgnoringSafeArea(.all)
                             .foregroundColor(.white)
@@ -68,19 +75,23 @@ struct ScreenshotView: View {
                             }
                     }
                 }
-                
+
             }
-            
-        } .onReceive(NotificationCenter.default.publisher(for: UIApplication.userDidTakeScreenshotNotification)) { _ in
+
+        }.onReceive(
+            NotificationCenter.default.publisher(
+                for: UIApplication.userDidTakeScreenshotNotification)
+        ) { _ in
             isPhotoVisible = true
-            
-        } .navigationBarBackButtonHidden(true)
-        
+
+        }.navigationBarBackButtonHidden(true)
+
     }
-    
+
     private func playSound3() {
-        let url = Bundle.main.url(forResource: "Explosion Sound", withExtension: "mp3")
-        
+        let url = Bundle.main.url(
+            forResource: "Explosion Sound", withExtension: "mp3")
+
         guard url != nil else {
             return
         }
@@ -91,9 +102,10 @@ struct ScreenshotView: View {
             print("error")
         }
     }
-    
+
 }
 
 #Preview {
     ScreenshotView()
 }
+
